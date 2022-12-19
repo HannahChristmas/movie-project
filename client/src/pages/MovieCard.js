@@ -1,48 +1,44 @@
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 // import {Pencil} from "@styled-icons/evil/Pencil";
 
 function MovieCard() {
-  const [movies, setMovies] = useState([]);
+  const [{ data: movie, error, status }, setMovie] = useState({
+    data: null,
+    error: null,
+    status: "pending",
+  });
+  const { id } = useParams();
 
   useEffect(() => {
-    fetch("/movies")
-      .then((r) => r.json())
-      .then(setMovies);
-  }, []);
+    fetch(`/movies/${id}`).then((r) => {
+      if (r.ok) {
+        r.json().then((movie) =>
+          setMovie({ data: movie, error: null, status: "resolved"})
+          );
+      } else {
+        r.json().then((err) =>
+          setMovie({ data: null, error: err.error, status: "rejected" })
+          );
+        }
+      });
+  }, [id]);
 
   return (
     <Wrapper>
-      {movies.length > 0 ? (
-        movies.map((movie) => (
-          <Movie key={movie.id}>
-            <Box>
-                <img className="poster" src={movie.image_url}/>
-              <h2>{movie.title}</h2>
-              <p>
-                <em><b>Genre:</b> {movie.genre}</em>
-                &nbsp;·&nbsp;
-                <cite><b>Year:</b> {movie.year}</cite>
-                &nbsp;·&nbsp;
-                <cite><b>Director:</b> {movie.director}</cite>
-              </p>
-              {/* <ReactMarkdown>{movie.director}</ReactMarkdown> */}
-              <Link to={`/movies/${movie.id}`}>Reviews</Link>
+      <Box>
+        <h1>{movie.title}</h1>
+        <h1>{movie.genre}</h1>
+        <h1>{movie.year}</h1>
+        <h1>{movie.reviews}</h1>
 
-            </Box>
-          </Movie>
-        ))
-      ) : (
-        <>
-          <h2>No Movies Found</h2>
-          <Button as={Link} to="/new">
-            Add a New Movie
-          </Button>
-        </>
-      )}
+
+
+      </Box>
     </Wrapper>
   );
 }

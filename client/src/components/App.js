@@ -27,8 +27,9 @@ function App() {
       <main>
       <Routes>
           <Route path="/new" element={<NewMovie user={user}/>}/>
-          <Route path="/" element ={<MovieList />}/>
-          <Route path="/movies/:id" element ={<MovieCard />}/>
+          <Route path="/" element ={<MovieList user={user}/>}/>
+          <Route path="/movies" element ={<MovieList user={user}/>}/>
+          <Route path="/movies/:id" element ={<MovieCard user={user}/>}/>
       </Routes>
         
       </main>
