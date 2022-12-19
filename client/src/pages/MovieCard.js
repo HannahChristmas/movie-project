@@ -28,16 +28,29 @@ function MovieCard() {
       });
   }, [id]);
 
+  function handleAddReview(newReview) {
+    setMovie({
+      error,
+      status,
+      data: {
+        ...movie,
+        reviews: [...movie.reviews, newReview],
+      },
+    });
+  }
+
+  if (status === "pending") return <h2>Loading...</h2>;
+  if (status === "rejected") return <h2>Error: {error}</h2>;
+
+
   return (
     <Wrapper>
       <Box>
         <h1>{movie.title}</h1>
         <h1>{movie.genre}</h1>
         <h1>{movie.year}</h1>
-        <h1>{movie.reviews}</h1>
-
-
-
+        {/* <h1>{movie.reviews}</h1> */}
+        {/* <AddReview /> */}
       </Box>
     </Wrapper>
   );

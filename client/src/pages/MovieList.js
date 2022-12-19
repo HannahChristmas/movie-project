@@ -30,7 +30,7 @@ function MovieList() {
                 <cite><b>Director:</b> {movie.director}</cite>
               </p>
               {/* <ReactMarkdown>{movie.director}</ReactMarkdown> */}
-              <Link to={`/movies/${movie.id}`} movie={movie}>Reviews</Link>
+              <Link to={`/movies/${movie.id}`} movieprops={movie}>Reviews</Link>
 
             </Box>
           </Movie>
