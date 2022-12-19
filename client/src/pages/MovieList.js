@@ -19,16 +19,16 @@ function MovieList() {
         movies.map((movie) => (
           <Movie key={movie.id}>
             <Box>
+                <img className="poster" src={movie.image_url}/>
               <h2>{movie.title}</h2>
               <p>
-                <em>Genre: {movie.genre}</em>
+                <em><b>Genre:</b> {movie.genre}</em>
                 &nbsp;·&nbsp;
-                <cite>Year: {movie.year}</cite>
+                <cite><b>Year:</b> {movie.year}</cite>
+                &nbsp;·&nbsp;
+                <cite><b>Director:</b> {movie.director}</cite>
               </p>
-              <p>
-                Director: {movie.director}
-              </p>
-              <ReactMarkdown>{movie.director}</ReactMarkdown>
+              {/* <ReactMarkdown>{movie.director}</ReactMarkdown> */}
             </Box>
           </Movie>
         ))
@@ -47,7 +47,14 @@ function MovieList() {
 const Wrapper = styled.section`
   max-width: 800px;
   margin: 40px auto;
+  text-align: center;
+
 `;
+
+// const Poster = styled.div`
+//   width: 20px;
+//   margin: 40px auto;
+// `;
 
 const Movie = styled.article`
   margin-bottom: 24px;
