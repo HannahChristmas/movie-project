@@ -4,6 +4,8 @@ import Login from "../pages/Login";
 import NavBar from "./NavBar";
 import MovieList from "../pages/MovieList";
 import NewMovie from "../pages/NewMovie";
+import MovieCard from "../pages/MovieCard";
+
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
       <Routes>
           <Route path="/new" element={<NewMovie user={user}/>}/>
           <Route path="/" element ={<MovieList />}/>
+          <Route path="/movies/:id" element ={<MovieCard />}/>
       </Routes>
         
       </main>

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Box, Button } from "../styles";
 // import {Pencil} from "@styled-icons/evil/Pencil";
 
-function MovieList() {
+function MovieCard() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -66,4 +66,4 @@ const Movie = styled.article`
 //   height: 2.5rem;
 // `
 
-export default MovieList;
+export default MovieCard;
