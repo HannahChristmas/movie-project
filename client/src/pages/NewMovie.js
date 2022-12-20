@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
-import ReactMarkdown from "react-markdown";
-import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
+// import ReactMarkdown from "react-markdown";
+import { Button, Error, FormField, Input, Label } from "../styles";
+
+// import { Button, Error, FormField, Input, Label, Textarea } from "../styles";
 
 function NewMovie({ user }) {
   const [title, setTitle] = useState("A New Movie");

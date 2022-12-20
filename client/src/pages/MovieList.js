@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
@@ -20,7 +20,7 @@ function MovieList() {
         movies.map((movie) => (
           <Movie key={movie.id}>
             <Box>
-                <img className="poster" src={movie.image_url}/>
+                <img className="poster" alt={movie.title}src={movie.image_url}/>
               <h2>{movie.title}</h2>
               <p>
                 <em><b>Genre:</b> {movie.genre}</em>

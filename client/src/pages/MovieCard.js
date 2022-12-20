@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box, Button } from "../styles";
+// import { Box, Button } from "../styles";
+import { Box } from "../styles";
+
+import NewReview from "./NewReview";
 // import {Pencil} from "@styled-icons/evil/Pencil";
 
-function MovieCard() {
+function MovieCard({user}) {
   const [{ data: movie, error, status }, setMovie] = useState({
     data: null,
     error: null,
@@ -28,13 +31,13 @@ function MovieCard() {
       });
   }, [id]);
 
-  function handleAddReview(newReview) {
+  function handleAddMovie(newMovie) {
     setMovie({
       error,
       status,
       data: {
         ...movie,
-        reviews: [...movie.reviews, newReview],
+        reviews: [...movie.reviews, newMovie],
       },
     });
   }
@@ -50,7 +53,13 @@ function MovieCard() {
         <h1>{movie.genre}</h1>
         <h1>{movie.year}</h1>
         {/* <h1>{movie.reviews}</h1> */}
-        {/* <AddReview /> */}
+        {movie.reviews.map((review) => (
+          <Box key={review.id}>
+            {review.review}<br></br>
+            {review.user_id}
+          </Box>
+        ))}
+        <NewReview onAddMovie={handleAddMovie} movieId={movie.id} userId={user.id}/>
       </Box>
     </Wrapper>
   );
@@ -67,9 +76,9 @@ const Wrapper = styled.section`
 //   margin: 40px auto;
 // `;
 
-const Movie = styled.article`
-  margin-bottom: 24px;
-`;
+// const Movie = styled.article`
+//   margin-bottom: 24px;
+// `;
 
 // const SmallPencil = styled(Pencil)`
 //   height: 2.5rem;
